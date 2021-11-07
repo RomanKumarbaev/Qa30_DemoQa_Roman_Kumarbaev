@@ -23,7 +23,7 @@ public class StudentFormTest extends TestBase {
                 .name("Vasya")
                 .lastname("Pupkin")
                 .email("vasya"+i+"@gmail.com")
-                .gender("Male")
+                .gender("Other")
                 .number("056-9886534")
                 .build();
         app.studentHelper().selectPracticeForm();

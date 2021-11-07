@@ -32,26 +32,36 @@ public class StudentHelper extends HelperBase{
         if(isStudentCreationFormPresent()){
 
             String str = student.getGender();
+            JavascriptExecutor js= (JavascriptExecutor) wd;
 
             type(By.id("firstName"), student.getName());
             type(By.id("lastName"), student.getLastname());
             type(By.id("userEmail"), student.getEmail());
-            type(By.id("userNumber"), student.getNumber());
+
 
             switch (str){
                 case "Male":
-                    click(By.id("gender-radio-1"));
+                    //click(By.cssSelector("#gender-radio-1"));
+                    js.executeScript("document.querySelector('#gender-radio-1').checked=true;");
+                    js.executeScript("document.querySelector('#gender-radio-1').click();");
+
+
                     break;
                 case "Female":
-                    click(By.id("gender-radio-2"));
+                    //click(By.id("gender-radio-2"));
+                    js.executeScript("document.querySelector('#gender-radio-2').checked=true;");
+                    js.executeScript("document.querySelector('#gender-radio-2').click();");
                     break;
                 case "Other":
-                    click(By.id("gender-radio-3"));
+                    //click(By.id("gender-radio-3"));
+                    js.executeScript("document.querySelector('#gender-radio-3').checked=true;");
+                    js.executeScript("document.querySelector('#gender-radio-3').click();");
                     break;
                 default:
                     System.out.println("Error");
 
                     }
+                    type(By.id("userNumber"), student.getNumber());
 
 
 
