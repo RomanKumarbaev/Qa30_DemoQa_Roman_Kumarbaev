@@ -17,7 +17,11 @@ String lastname;
 String email;
 String gender;
 String number;
-
-
+String birthday;
+String subject;
+String hobbies;
+String address;
+String state;
+String city;
 
 }
