@@ -70,6 +70,7 @@ public class StudentHelper extends HelperBase {
                     break;
                 case "Music":
                     click(By.xpath("//label[.='Music']"));
+                    break;
                 default:
                     System.out.println("Error");
             }
