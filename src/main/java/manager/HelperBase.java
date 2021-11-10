@@ -1,9 +1,6 @@
 package manager;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 
 public class HelperBase {
     WebDriver wd;
@@ -43,6 +40,12 @@ public class HelperBase {
 
     public void click(By locator) {
         wd.findElement(locator).click();
+
+    }
+
+    public void scroll(int x, int y){
+        JavascriptExecutor js= (JavascriptExecutor)  wd;
+        js.executeScript("window.scroll(window.scrollBy(" + x + "," + y + "))");
 
     }
 }

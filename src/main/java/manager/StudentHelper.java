@@ -1,15 +1,13 @@
 package manager;
 
+import models.Hobby;
 import models.Student;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import models.StudentEnum;
+import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public class StudentHelper extends HelperBase {
@@ -49,12 +47,90 @@ public class StudentHelper extends HelperBase {
         selectHobby(student.getHobbies());
 
         type(By.id("currentAddress"),student.getAddress());
+        typeState(student.getState());
+
+        typeCity(student.getCity());
 
 
         pause(3000);
 
 
     }
+
+    public void fillStudentForm(StudentEnum student) {
+
+        type(By.id("firstName"), student.getName());
+        type(By.id("lastName"), student.getLastname());
+        type(By.id("userEmail"), student.getEmail());
+
+        selectGender(student.getGender());
+
+        type(By.id("userNumber"), student.getNumber());
+
+        typeBdaySelect(student.getBirthday());
+
+        addSubject(student.getSubject());
+
+        selectHobbyEnum(student.getHobbies());
+
+        type(By.id("currentAddress"),student.getAddress());
+
+
+
+
+        pause(3000);
+
+
+    }
+
+    private void typeCity(String city) {
+        WebElement element = wd.findElement(By.cssSelector("#react-select-4-input"));
+
+//        element.sendKeys(city);
+//        element.sendKeys(Keys.ENTER);
+
+        new Actions(wd).sendKeys(element,city).sendKeys(Keys.ENTER).perform();
+
+
+    }
+
+    private void typeState(String state) {
+
+        Dimension dimension = wd.manage().window().getSize();
+        System.out.println(dimension.getHeight()+dimension.getWidth());
+        scroll(0,400);
+
+        WebElement element = wd.findElement(By.cssSelector("#react-select-3-input"));
+
+//        element.sendKeys(state);
+//        element.sendKeys(Keys.ENTER);
+        new Actions(wd).sendKeys(element,state).sendKeys(Keys.ENTER).perform();
+
+    }
+
+    private void selectHobbyEnum(List<Hobby> hobbies) {
+
+        for (Hobby h:hobbies){
+            switch (h){
+                case SPORTS:
+                    click(By.xpath("//label[.='Sports']"));
+                    break;
+                case READING:
+                    click(By.xpath("//label[.='Reading']"));
+                    break;
+                case MUSIC:
+                    click(By.xpath("//label[.='Music']"));
+                    break;
+                default:
+                    System.out.println("Error");
+            }
+
+
+        }
+
+
+    }
+
 
     private void selectHobby(String hobbies) {
         String [] hob = hobbies.split(",");
