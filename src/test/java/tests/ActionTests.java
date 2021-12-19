@@ -8,7 +8,6 @@ public class ActionTests extends TestBase{
         app.action().selectInterections();
         app.action().selectDroppable();
         app.action().droppebTests();
-
-
     }
+    
 }

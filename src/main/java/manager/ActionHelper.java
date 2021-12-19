@@ -14,13 +14,19 @@ public class ActionHelper extends HelperBase{
     public void droppebTests() {
         WebElement dragMe = wd.findElement( By.id("draggable"));
         WebElement dropHere = wd.findElement( By.id("droppable"));
-        pause(3000);
-
 
 
 
         Actions actions = new Actions(wd);
-        actions.dragAndDrop(dragMe,dropHere).build().perform();
+        //actions.dragAndDrop(dragMe,dropHere).build().perform();
+
+        int x = (dropHere.getRect().getX()-dragMe.getRect().getX())+15;
+        int y = (dropHere.getRect().getY()-dragMe.getRect().getY())+25;
+
+        actions.dragAndDropBy(dragMe,x,y).build().perform();
+        pause(3000);
+
+
 
 
         String text = dropHere.getText();
