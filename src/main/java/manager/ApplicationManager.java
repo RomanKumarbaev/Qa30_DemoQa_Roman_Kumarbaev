@@ -10,6 +10,7 @@ public class ApplicationManager {
     WebDriver wd;
     AlertHelper alert;
     StudentHelper studentHelper;
+    ActionHelper action;
 
     public void init() {
         wd = new ChromeDriver();
@@ -19,6 +20,7 @@ public class ApplicationManager {
 
         alert = new AlertHelper(wd);
         studentHelper = new StudentHelper(wd);
+        action = new ActionHelper(wd);
 
         alert.hideFooter();
 
@@ -30,6 +32,10 @@ public class ApplicationManager {
 
     public AlertHelper alert() {
         return alert;
+    }
+
+    public ActionHelper action() {
+        return action;
     }
 
     public StudentHelper studentHelper() {
